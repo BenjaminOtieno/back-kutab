@@ -1,24 +1,14 @@
-# README
+                                                            Benjamin Otieno
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# backend - **kutab** API
 
-Things you may want to cover:
+## `Installation Process`
 
-* Ruby version
+cd into the backend diroctory then eun `$bundle install` to install the gems.
 
-* System dependencies
+You can start your server with `$rails s` in the backend directory
 
-* Configuration
+This will run your server on port http://localhost:3000 .
 
-* Database creation
+Then run `$rails db:migrate db:seed` the following to run the migrations and seed the DB.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

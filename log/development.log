@@ -4177,3 +4177,1838 @@ Started GET "/books" for ::1 at 2022-12-08 20:28:56 +0300
   
 ActionController::RoutingError (No route matches [GET] "/books"):
   
+Started GET "/api/v1/users" for ::1 at 2022-12-08 21:08:00 +0300
+Processing by Api::V1::UsersController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (2037.65ms)
+Completed 200 OK in 6539ms (Views: 2272.2ms | Allocations: 1414)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-08 23:23:49 +0300
+Processing by Api::V1::UsersController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (406.53ms)
+Completed 200 OK in 2207ms (Views: 778.3ms | Allocations: 209)
+
+
+DEPRECATION WARNING: Non-URL-safe CSRF tokens are deprecated. Use 6.1 defaults or above. (called from block (3 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/actionpack-7.0.4/lib/action_controller/railtie.rb:80)
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from block (2 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/activerecord-7.0.4/lib/active_record/railtie.rb:264)
+Started POST "/api/v1/users/" for ::1 at 2022-12-09 11:20:13 +0300
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:20:13 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::BooksController#index as */*
+Processing by Api::V1::UsersController#create as JSON
+  [1m[36mBook Load (56.9ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  Parameters: {"username"=>"Dwayne", "user"=>{"username"=>"Dwayne"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Dwayne"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers]   [1m[36mNote Load (0.1ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.49ms)
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+Completed 200 OK in 460ms (Views: 284.5ms | ActiveRecord: 57.6ms | Allocations: 22546)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (241.69ms)
+Completed 200 OK in 334ms (Views: 265.5ms | ActiveRecord: 2.6ms | Allocations: 19206)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:20:36 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.51ms)
+Completed 200 OK in 6ms (Views: 4.5ms | ActiveRecord: 0.3ms | Allocations: 4384)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-09 11:26:22 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>12, "user_book"=>{"user_id"=>1, "book_id"=>12}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (27.6ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (19.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUserBook Create (213.7ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 12], ["created_at", "2022-12-09 08:26:22.496758"], ["updated_at", "2022-12-09 08:26:22.496758"]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (180.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:6:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.37ms)
+Completed 200 OK in 519ms (Views: 0.9ms | ActiveRecord: 441.5ms | Allocations: 8709)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:30:18 +0300
+Started GET "/api/v1/users" for ::1 at 2022-12-09 11:30:18 +0300
+Processing by Api::V1::BooksController#index as */*
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.2ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+[active_model_serializers]   [1m[36mBook Load (82.9ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (92.65ms)
+Completed 200 OK in 96ms (Views: 10.2ms | ActiveRecord: 83.6ms | Allocations: 6791)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (4.17ms)
+Completed 200 OK in 99ms (Views: 8.3ms | ActiveRecord: 0.4ms | Allocations: 7537)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:30:38 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.79ms)
+Started GET "/api/v1/users" for ::1 at 2022-12-09 11:30:38 +0300
+Completed 200 OK in 9ms (Views: 5.9ms | ActiveRecord: 0.3ms | Allocations: 4690)
+
+
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.1ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (3.13ms)
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.3ms | Allocations: 2643)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:32:31 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.42ms)
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.3ms | Allocations: 4721)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 11:32:31 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.2ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (5.1ms)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 2711)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:37:31 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (4.9ms)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.3ms | Allocations: 4367)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:38:15 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (4.37ms)
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 4367)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:38:22 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (189.38ms)
+Completed 200 OK in 193ms (Views: 191.4ms | ActiveRecord: 0.3ms | Allocations: 4368)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 11:38:48 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.97ms)
+Completed 200 OK in 28ms (Views: 5.3ms | ActiveRecord: 0.4ms | Allocations: 4367)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 12:41:27 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (60.1ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (312.58ms)
+Completed 200 OK in 717ms (Views: 315.2ms | ActiveRecord: 82.7ms | Allocations: 4515)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 12:41:31 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.6ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (70.51ms)
+Completed 200 OK in 99ms (Views: 71.3ms | ActiveRecord: 0.6ms | Allocations: 4367)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 12:47:06 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (1984.42ms)
+Completed 200 OK in 3437ms (Views: 1985.3ms | ActiveRecord: 0.3ms | Allocations: 4376)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 12:50:05 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (163.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (170.9ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (55.0ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (24479.7ms)
+Completed 200 OK in 45667ms (Views: 24311.7ms | ActiveRecord: 389.1ms | Allocations: 2767)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 12:53:40 +0300
+Started POST "/api/v1/users/" for ::1 at 2022-12-09 12:53:40 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (14.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"username"=>"Dwayne", "user"=>{"username"=>"Dwayne"}}
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Dwayne"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+[active_model_serializers]   [1m[36mNote Load (0.2ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (1004.18ms)
+Completed 200 OK in 2275ms (Views: 1348.5ms | ActiveRecord: 14.2ms | Allocations: 5779)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (2282.78ms)
+Completed 200 OK in 3069ms (Views: 2528.3ms | ActiveRecord: 14.3ms | Allocations: 7699)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-09 12:55:53 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>3, "user_book"=>{"user_id"=>1, "book_id"=>3}}
+  [1m[36mTRANSACTION (10.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUserBook Create (47.2ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 3], ["created_at", "2022-12-09 09:55:54.662907"], ["updated_at", "2022-12-09 09:55:54.662907"]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (184.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:6:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.43ms)
+Completed 200 OK in 2925ms (Views: 214.1ms | ActiveRecord: 242.7ms | Allocations: 6184)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 12:56:33 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (873.8ms)
+Completed 200 OK in 953ms (Views: 874.7ms | ActiveRecord: 0.4ms | Allocations: 4369)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 12:57:58 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (18.39ms)
+Completed 200 OK in 51ms (Views: 19.5ms | ActiveRecord: 0.4ms | Allocations: 4367)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 12:58:12 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (8.6ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 38, title: "1984", subtitle: nil, authors: "George Orwell", img: "http://books.google.com/books/content?id=kotPYEqx7...", description: "A PBS Great American Read Top 100 Pick With extrao...", created_at: "2022-12-08 15:32:32.843898000 +0000", updated_at: "2022-12-08 15:32:32.843898000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (50.11ms)
+Completed 200 OK in 78ms (Views: 51.4ms | ActiveRecord: 8.6ms | Allocations: 4368)
+
+
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from <top (required)> at /home/sheikh/Development/back-kutab/bin/rails:9)
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from <top (required)> at /home/sheikh/Development/back-kutab/bin/rails:9)
+  [1m[35m (104.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (79.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20201028174555)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20201028174555"]]
+  [1m[36mTRANSACTION (147.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateNotes (20201028174828)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "notes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "user_id" integer, "book_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20201028174828"]]
+  [1m[36mTRANSACTION (150.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUserBooks (20201028175232)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "user_books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "book_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20201028175232"]]
+  [1m[36mTRANSACTION (178.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBooks (20201028175559)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "subtitle" varchar, "authors" varchar, "img" varchar, "description" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20201028175559"]]
+  [1m[36mTRANSACTION (176.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddFormatDateToNotes (20201105184627)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (23.5ms)[0m  [1m[35mALTER TABLE "notes" ADD "format_date" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20201105184627"]]
+  [1m[36mTRANSACTION (95.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-12-09 10:07:29.256093"], ["updated_at", "2022-12-09 10:07:29.256093"]]
+  [1m[36mTRANSACTION (57.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Drums of Autumn"], ["authors", "Diana Gabaldon"], ["img", "http://books.google.com/books/content?id=0mCXCQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "The magnificent saga continues.... It began in Scotland, at an ancient stone circle. There, a doorway, open to a select few, leads into the past—or the grave. Claire Randall survived the extraordinary passage, not once but twice. Her first trip ..."], ["created_at", "2022-12-09 10:07:30.606527"], ["updated_at", "2022-12-09 10:07:30.606527"]]
+  [1m[36mTRANSACTION (185.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Voyager"], ["subtitle", "A Novel"], ["authors", "Diana Gabaldon"], ["img", "http://books.google.com/books/content?id=tuoHq4clR3sC&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "NEW YORK TIMES BESTSELLER • The third book in Diana Gabaldon’s acclaimed Outlander saga, the basis for the Starz original series. “Triumphant . . . Her use of historical detail and a truly adult love story confirm Gabaldon as a superior writer ..."], ["created_at", "2022-12-09 10:07:30.796787"], ["updated_at", "2022-12-09 10:07:30.796787"]]
+  [1m[36mTRANSACTION (139.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.4ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Dragonfly in Amber (25th Anniversary Edition)"], ["subtitle", "A Novel"], ["authors", "Diana Gabaldon"], ["img", "http://books.google.com/books/content?id=9kHeuQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "NEW YORK TIMES BESTSELLER • The second book in Diana Gabaldon’s acclaimed Outlander saga, the basis for the Starz original series. Don’t miss the new Outlander novel, Go Tell the Bees That I Am Gone, available November 23! This special twenty ..."], ["created_at", "2022-12-09 10:07:30.941862"], ["updated_at", "2022-12-09 10:07:30.941862"]]
+  [1m[36mTRANSACTION (174.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Outlander"], ["authors", "Diana Gabaldon"], ["img", "http://books.google.com/books/content?id=7iF6BgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "THE FIRST NOVEL IN THE BESTSELLING OUTLANDER SERIES. As seen on Amazon Prime TV. What if your future was the past? 1946, and Claire Randall goes to the Scottish Highlands with her husband Frank. It’s a second honeymoon, a chance to learn how war ..."], ["created_at", "2022-12-09 10:07:31.122821"], ["updated_at", "2022-12-09 10:07:31.122821"]]
+  [1m[36mTRANSACTION (107.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Treasure Island"], ["authors", "Robert Louis Stevenson"], ["img", "http://books.google.com/books/content?id=Qq4VDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "Stevenson's classic tale of buccaneers, a treasure map, and a hunt for buried gold introduced the character of Long John Silver and brought moral ambiguity into children's books. This new edition celebrates the ultimate book of pirates and ..."], ["created_at", "2022-12-09 10:07:31.234964"], ["updated_at", "2022-12-09 10:07:31.234964"]]
+  [1m[36mTRANSACTION (86.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "How to Stay Alive in the Woods"], ["subtitle", "A Complete Guide to Food, Shelter and Self-Preservation Anywhere"], ["authors", "Bradford Angier"], ["img", "http://books.google.com/books/content?id=Mx5m-p5Hr_kC&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "HOW TO STAY ALIVE IN THE WOODS is a practical, readable-and potentially indispensable-manual for anyone venturing into the great outdoors. Broken down into four essential sections, Sustenance, Warmth, Orientation and Safety, this enlightening ..."], ["created_at", "2022-12-09 10:07:31.325490"], ["updated_at", "2022-12-09 10:07:31.325490"]]
+  [1m[36mTRANSACTION (132.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Catching Fire (Hunger Games, Book Two)"], ["authors", "Suzanne Collins"], ["img", "http://books.google.com/books/content?id=FN5wMOZKTYMC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "The second book in Suzanne Collins's phenomenal and worldwide bestselling Hunger Games trilogy."], ["created_at", "2022-12-09 10:07:31.462300"], ["updated_at", "2022-12-09 10:07:31.462300"]]
+  [1m[36mTRANSACTION (83.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "The Hunger Games"], ["authors", "Suzanne Collins"], ["img", "http://books.google.com/books/content?id=_zSzAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "First in the ground-breaking HUNGER GAMES trilogy, this new foiled edition of THE HUNGER GAMES is available for a limited period of time. Set in a dark vision of the near future, a terrifying reality TV show is taking place. Twelve boys and ..."], ["created_at", "2022-12-09 10:07:31.549721"], ["updated_at", "2022-12-09 10:07:31.549721"]]
+  [1m[36mTRANSACTION (78.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Mockingjay (Hunger Games, Book Three)"], ["authors", "Suzanne Collins"], ["img", "http://books.google.com/books/content?id=Iw_gHtk4ghYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "The greatly anticipated final book in the New York Times bestselling Hunger Games trilogy by Suzanne Collins."], ["created_at", "2022-12-09 10:07:31.631238"], ["updated_at", "2022-12-09 10:07:31.631238"]]
+  [1m[36mTRANSACTION (87.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Ask Baba Yaga"], ["subtitle", "Otherworldly Advice for Everyday Troubles"], ["authors", "Taisia Kitaiskaia"], ["img", "http://books.google.com/books/content?id=3rWgDgAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "Dear Baba Yaga, I think I must crave male attention too much. I fear that, without it, I would feel invisible. BABA YAGA: When you seek others this way, you are invisible nonetheless. Yr shawl is covered in mirrors in which others admire ..."], ["created_at", "2022-12-09 10:07:31.723205"], ["updated_at", "2022-12-09 10:07:31.723205"]]
+  [1m[36mTRANSACTION (128.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Survival Math"], ["subtitle", "Notes on an All-American Family"], ["authors", "Mitchell Jackson"], ["img", "http://books.google.com/books/content?id=1gLJDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "“A vibrant memoir of race, violence, family, and manhood…a virtuosic wail of a book” (The Boston Globe), Survival Math calculates how award-winning author Mitchell S. Jackson survived the Portland, Oregon, of his youth. This “spellbinding” (NPR ..."], ["created_at", "2022-12-09 10:07:31.856967"], ["updated_at", "2022-12-09 10:07:31.856967"]]
+  [1m[36mTRANSACTION (51.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "There There"], ["subtitle", "A novel"], ["authors", "Tommy Orange"], ["img", "http://books.google.com/books/content?id=oNY0DwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "NATIONAL BESTSELLER • PEN/HEMINGWAY AWARD WINNER • One of The New York Times 10 Best Books of the Year • A wondrous and shattering novel that follows twelve characters from Native communities: all traveling to the Big Oakland Powwow, all ..."], ["created_at", "2022-12-09 10:07:31.912049"], ["updated_at", "2022-12-09 10:07:31.912049"]]
+  [1m[36mTRANSACTION (68.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Emma"], ["authors", "Jane Austen"], ["img", "http://books.google.com/books/content?id=iHy75F9qO_4C&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "A timeless coming-of-age story follows the adventures of the self-assured and accomplished Emma, a twenty-one-year-old girl of privilege who believes she is immune to romance and has several chaotic and often humorous experiences. Reissue."], ["created_at", "2022-12-09 10:07:31.983784"], ["updated_at", "2022-12-09 10:07:31.983784"]]
+  [1m[36mTRANSACTION (65.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "The Old Man And The Sea"], ["authors", "Ernest Hemingway"], ["img", "http://books.google.com/books/content?id=anJrbWGCdmAC&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "Santiago, an old Cuban fisherman, has gone 84 days without catching a fish. Confident that his bad luck is at an end, he sets off alone, far into the Gulf Stream, to fish. Santiago’s faith is rewarded, and he quickly hooks a marlin...a marlin so ..."], ["created_at", "2022-12-09 10:07:32.055069"], ["updated_at", "2022-12-09 10:07:32.055069"]]
+  [1m[36mTRANSACTION (95.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "My Family and Other Animals"], ["authors", "Gerald Durrell"], ["img", "http://books.google.com/books/content?id=Dm4dDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "The inspiration for The Durrells in Corfu, a Masterpiece production on public television: A naturalist’s account of his childhood on the exotic Greek island. When the Durrells could no longer endure the gray English climate, they did what any ..."], ["created_at", "2022-12-09 10:07:32.159829"], ["updated_at", "2022-12-09 10:07:32.159829"]]
+  [1m[36mTRANSACTION (63.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Gulliver's Travels"], ["authors", "Martin Woodside, Jonathan Swift"], ["img", "http://books.google.com/books/content?id=qk8ps8dtZgIC&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "An abridged version of the voyages of an eighteenth-century Englishman that carry him to such strange places as Lilliput, where people are six inches tall, and Brobdingnag, a land peopled by giants."], ["created_at", "2022-12-09 10:07:32.233935"], ["updated_at", "2022-12-09 10:07:32.233935"]]
+  [1m[36mTRANSACTION (101.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Jitterbug Perfume"], ["subtitle", "A Novel"], ["authors", "Tom Robbins"], ["img", "http://books.google.com/books/content?id=9K6oJ3mezL4C&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "Jitterbug Perfume is an epic. Which is to say, it begins in the forests of ancient Bohemia and doesn’t conclude until nine o’clock tonight (Paris time). It is a saga, as well. A saga must have a hero, and the hero of this one is a janitor with a ..."], ["created_at", "2022-12-09 10:07:32.339792"], ["updated_at", "2022-12-09 10:07:32.339792"]]
+  [1m[36mTRANSACTION (66.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Venus in Furs"], ["authors", "Leopold Von Sacher-Masoch"], ["img", "http://books.google.com/books/content?id=7qRNCAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "This manuscript tells of a man, Severin von Kusiemski, so infatuated with a woman, Wanda von Dunajew, that he requests to be treated as her slave, and encourages her to treat him in progressively more degrading ways. At first Wanda does not ..."], ["created_at", "2022-12-09 10:07:32.411047"], ["updated_at", "2022-12-09 10:07:32.411047"]]
+  [1m[36mTRANSACTION (100.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.3ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Jane Eyre"], ["authors", "Charlotte Brontë"], ["img", "http://books.google.com/books/content?id=bfpaLNJhassC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "A young woman looks back at her childhood in a harsh orphanage and describes her growing love for the man who employs her as governess"], ["created_at", "2022-12-09 10:07:32.516777"], ["updated_at", "2022-12-09 10:07:32.516777"]]
+  [1m[36mTRANSACTION (112.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.4ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Design for how People Learn"], ["authors", "Julie Dirksen"], ["img", "http://books.google.com/books/content?id=YiSkO13x2bcC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "Products, technologies, and workplaces change so quickly today that everyone is continually learning. Many of us are also teaching, even when it's not in our job descriptions. Whether it's giving a presentation, writing documentation, or creating ..."], ["created_at", "2022-12-09 10:07:32.634570"], ["updated_at", "2022-12-09 10:07:32.634570"]]
+  [1m[36mTRANSACTION (67.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Interpretation"], ["subtitle", "Making a Difference on Purpose"], ["authors", "Sam Ham"], ["img", "http://books.google.com/books/content?id=EBmpDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "In the new edition of the international bestseller Environmental Interpretation, Sam H. Ham captures what has changed in our understanding of interpretation during the past two decades. Ham draws on recent advances in communication research to ..."], ["created_at", "2022-12-09 10:07:32.708271"], ["updated_at", "2022-12-09 10:07:32.708271"]]
+  [1m[36mTRANSACTION (46.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "The Art of Relevance"], ["authors", "Nina Simon"], ["img", "http://books.google.com/books/content?id=YK6MDAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "What do the London Science Museum, California Shakespeare Theater, and ShaNaNa have in common? They are all fighting for relevance in an often indifferent world. The Art of Relevance is your guide to mattering more to more people. You'll find ..."], ["created_at", "2022-12-09 10:07:32.762020"], ["updated_at", "2022-12-09 10:07:32.762020"]]
+  [1m[36mTRANSACTION (43.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Good Omens"], ["subtitle", "The Nice and Accurate Prophecies of Agnes Nutter, Witch"], ["authors", "Neil Gaiman, Terry Pratchett"], ["img", "http://books.google.com/books/content?id=-o-2KpQlFNsC&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "The classic collaboration from the internationally bestselling authors Neil Gaiman and Terry Pratchett, soon to be an original series starring Michael Sheen and David Tennant. ?Season 2 of Good Omens coming soon! “Good Omens . . . is something ..."], ["created_at", "2022-12-09 10:07:32.810286"], ["updated_at", "2022-12-09 10:07:32.810286"]]
+  [1m[36mTRANSACTION (45.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Hitting a Straight Lick with a Crooked Stick"], ["subtitle", "Stories from the Harlem Renaissance"], ["authors", "Zora Neale Hurston"], ["img", "http://books.google.com/books/content?id=KUKSDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "From “one of the greatest writers of our time” (Toni Morrison)—the author of Barracoon and Their Eyes Were Watching God—a collection of remarkable stories, including eight “lost” Harlem Renaissance tales now available to a wide audience for the ..."], ["created_at", "2022-12-09 10:07:32.861087"], ["updated_at", "2022-12-09 10:07:32.861087"]]
+  [1m[36mTRANSACTION (45.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Their Eyes Were Watching God"], ["authors", "Zora Neale Hurston"], ["img", "http://books.google.com/books/content?id=AxOpIMLco8AC&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "One of the most important works of twentieth-century American literature, Zora Neale Hurston's beloved 1937 classic, Their Eyes Were Watching God, is an enduring Southern love story sparkling with wit, beauty, and heartfelt wisdom. Told in the ..."], ["created_at", "2022-12-09 10:07:32.911550"], ["updated_at", "2022-12-09 10:07:32.911550"]]
+  [1m[36mTRANSACTION (47.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "To Kill a Mockingbird"], ["authors", "Harper Lee"], ["img", "http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "Voted America's Best-Loved Novel in PBS's The Great American Read Harper Lee's Pulitzer Prize-winning masterwork of honor and injustice in the deep South—and the heroism of one man in the face of blind and violent hatred One of the most ..."], ["created_at", "2022-12-09 10:07:32.961576"], ["updated_at", "2022-12-09 10:07:32.961576"]]
+  [1m[36mTRANSACTION (54.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "The Great Gatsby"], ["authors", "F. Scott Fitzgerald"], ["img", "http://books.google.com/books/content?id=rjvYQbbgQuwC&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "All the bright young things go to Jay Gatsby’s Long Island parties. Yet Gatsby himself is reserved and mysterious. He seems always to be waiting for something or someone. When he finally draws the beautiful Daisy Buchanan back into his orbit, he ..."], ["created_at", "2022-12-09 10:07:33.018719"], ["updated_at", "2022-12-09 10:07:33.018719"]]
+  [1m[36mTRANSACTION (106.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.4ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Norse Mythology #1"], ["authors", "Neil Gaiman, P. Craig Russell"], ["img", "http://books.google.com/books/content?id=c1z9DwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "GAIMAN! RUSSELL! MIGNOLA! ORDWAY! New York Times bestselling author Neil Gaiman and Eisner Award-winning comics legend P. Craig Russell breathe new life into the ancient Norse stories by taking readers through the creation of the Nine Worlds to ..."], ["created_at", "2022-12-09 10:07:33.129799"], ["updated_at", "2022-12-09 10:07:33.129799"]]
+  [1m[36mTRANSACTION (51.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Cracking the Tech Career"], ["subtitle", "Insider Advice on Landing a Job at Google, Microsoft, Apple, or any Top Tech Company"], ["authors", "Gayle Laakmann McDowell"], ["img", "http://books.google.com/books/content?id=p3bCBwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "Become the applicant Google can't turn down Cracking the Tech Career is the job seeker's guide to landing a coveted position at one of the top tech firms. A follow-up to The Google Resume, this book provides new information on what these ..."], ["created_at", "2022-12-09 10:07:33.186853"], ["updated_at", "2022-12-09 10:07:33.186853"]]
+  [1m[36mTRANSACTION (48.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "The Pendleton Field Guide to Camping"], ["authors", "Pendleton Woolen Mills"], ["img", "http://books.google.com/books/content?id=T3TTDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "From the beloved American heritage brand, The Pendleton Field Guide to Camping is a helpful companion for outdoor enthusiasts and weekend adventurers. Organized into three sections, this handbook offers practical advice on where to go camping ..."], ["created_at", "2022-12-09 10:07:33.238797"], ["updated_at", "2022-12-09 10:07:33.238797"]]
+  [1m[36mTRANSACTION (45.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Backpacking California"], ["subtitle", "Mountain, Foothill, Coastal and Desert Adventures in the Golden State"], ["authors", "Wilderness Press"], ["img", "http://books.google.com/books/content?id=zrBE2xRJ5EEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "Backpacking California is a collection of more than 70 of the most intriguing backpacking adventures in Wilderness Press's home territory of California. With contributions from more than a dozen Wilderness Press authors, the book describes routes ..."], ["created_at", "2022-12-09 10:07:33.288664"], ["updated_at", "2022-12-09 10:07:33.288664"]]
+  [1m[36mTRANSACTION (52.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Backpacking"], ["authors", "Adrienne Hall"], ["img", "http://books.google.com/books/content?id=gpZWPl_OdP4C&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "Offers tips on equipment, clothing, supplies, cooking, physical fitness, safety, and protecting the environment"], ["created_at", "2022-12-09 10:07:33.344883"], ["updated_at", "2022-12-09 10:07:33.344883"]]
+  [1m[36mTRANSACTION (51.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "Field Guide to Wilderness Medicine"], ["authors", "Paul S. Auerbach, Howard J. Donner, Eric A. Weiss"], ["img", "http://books.google.com/books/content?id=ZnprAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "This field-guide handbook, based upon Dr. Auerbach's text Wilderness Medicine, 4th Edition, focuses on information that is needed when medical situations present in the wilderness setting. Perfect for the physician on the go, this new 2nd edition ..."], ["created_at", "2022-12-09 10:07:33.400578"], ["updated_at", "2022-12-09 10:07:33.400578"]]
+  [1m[36mTRANSACTION (44.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "The New Annotated Sherlock Holmes: The Complete Short Stories: The Adventures of Sherlock Holmes and The Memoirs of Sherlock Holmes (Non-Slipcased Edition) (Vol. 1) (The Annotated Books)"], ["authors", "Arthur Conan Doyle"], ["img", "http://books.google.com/books/content?id=mcJFAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"], ["description", "Collects two volumes of Doyle's short stories starring Sherlock Holmes, each of which is annotated to provide definitions and further explanations of Sherlock's theories, as well as literary and cultural details about Victorian society."], ["created_at", "2022-12-09 10:07:33.452532"], ["updated_at", "2022-12-09 10:07:33.452532"]]
+  [1m[36mTRANSACTION (45.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Girls Who Code"], ["subtitle", "Learn to Code and Change the World"], ["authors", "Reshma Saujani"], ["img", "http://books.google.com/books/content?id=i_mcDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "NEW YORK TIMES BESTSELLER! Part how-to, part girl-empowerment, and all fun, from the leader of the movement championed by Sheryl Sandberg, Malala Yousafzai, and John Legend. Since 2012, the organization Girls Who Code has taught computing skills ..."], ["created_at", "2022-12-09 10:07:33.502816"], ["updated_at", "2022-12-09 10:07:33.502816"]]
+  [1m[36mTRANSACTION (114.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.4ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Life in Code"], ["subtitle", "A Personal History of Technology"], ["authors", "Ellen Ullman"], ["img", "http://books.google.com/books/content?id=rPTtDQAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "The never-more-necessary return of one of our most vital and eloquent voices on technology and culture, the author of the seminal Close to the Machine The last twenty years have brought us the rise of the internet, the development of artificial ..."], ["created_at", "2022-12-09 10:07:33.622885"], ["updated_at", "2022-12-09 10:07:33.622885"]]
+  [1m[36mTRANSACTION (58.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Cracking the Coding Interview"], ["subtitle", "150 Programming Interview Questions and Solutions"], ["authors", "Gayle Laakmann McDowell"], ["img", "http://books.google.com/books/content?id=anhAXwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "Now in the 5th edition, Cracking the Coding Interview gives you the interview preparation you need to get the top software developer jobs. This book provides: 150 Programming Interview Questions and Solutions: From binary trees to binary search ..."], ["created_at", "2022-12-09 10:07:33.686670"], ["updated_at", "2022-12-09 10:07:33.686670"]]
+  [1m[36mTRANSACTION (58.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Computer Coding for Kids"], ["subtitle", "A unique step-by-step visual guide, from binary code to building games"], ["authors", "Carol Vorderman"], ["img", "http://books.google.com/books/content?id=ShfEDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "Don't just play computer games - help children build them with your own home computer! Calling all coders, this is a straightforward, visual guide to helping kids understand the basics of computer coding using Scratch and Python coding languages ..."], ["created_at", "2022-12-09 10:07:33.748747"], ["updated_at", "2022-12-09 10:07:33.748747"]]
+  [1m[36mTRANSACTION (55.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBook Create (0.2ms)[0m  [1m[32mINSERT INTO "books" ("title", "subtitle", "authors", "img", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "This Just Speaks to Me"], ["subtitle", "Words to Live By Every Day"], ["authors", "Hoda Kotb"], ["img", "http://books.google.com/books/content?id=WD_oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"], ["description", "An instant New York Times bestseller! In this all-new collection of beloved quotes, This Just Speaks to Me, #1 New York Times bestselling author Hoda Kotb offers inspiration, wisdom, and hope 365 days a year. When her first collection of quotes ..."], ["created_at", "2022-12-09 10:07:33.809511"], ["updated_at", "2022-12-09 10:07:33.809511"]]
+  [1m[36mTRANSACTION (64.9ms)[0m  [1m[36mcommit transaction[0m
+DEPRECATION WARNING: Non-URL-safe CSRF tokens are deprecated. Use 6.1 defaults or above. (called from block (3 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/actionpack-7.0.4/lib/action_controller/railtie.rb:80)
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from block (2 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/activerecord-7.0.4/lib/active_record/railtie.rb:264)
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:08:27 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (4.02ms)
+Completed 200 OK in 66ms (Views: 8.0ms | ActiveRecord: 1.2ms | Allocations: 13459)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-09 13:41:38 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>2, "user_book"=>{"user_id"=>1, "book_id"=>2}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 203ms (Views: 1.3ms | ActiveRecord: 3.0ms | Allocations: 8286)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-09 13:41:48 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>2, "user_book"=>{"user_id"=>1, "book_id"=>2}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 2732)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:45:04 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.61ms)
+Completed 200 OK in 10ms (Views: 5.8ms | ActiveRecord: 0.4ms | Allocations: 4361)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:48:47 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (4.87ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.3ms | Allocations: 4308)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 13:49:20 +0300
+Processing by Api::V1::UsersController#index as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 218)
+
+
+Started POST "/api/v1/users/" for ::1 at 2022-12-09 13:50:01 +0300
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:50:02 +0300
+Processing by Api::V1::BooksController#index as */*
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"username"=>"Dwayne", "user"=>{"username"=>"Dwayne"}}
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+  [1m[36mUser Load (108.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Dwayne"], ["LIMIT", 1]]
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (53.24ms)
+Completed 200 OK in 172ms (Views: 59.5ms | ActiveRecord: 0.7ms | Allocations: 6649)
+
+
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Dwayne"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mUser Create (156.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["username", "Dwayne"], ["created_at", "2022-12-09 10:50:02.610165"], ["updated_at", "2022-12-09 10:50:02.610165"]]
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (414.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+[active_model_serializers]   [1m[36mNote Load (0.1ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (5690.22ms)
+Completed 200 OK in 6765ms (Views: 5690.3ms | ActiveRecord: 679.3ms | Allocations: 18043)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 13:50:30 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.2ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (5.14ms)
+Completed 200 OK in 9ms (Views: 5.8ms | ActiveRecord: 0.6ms | Allocations: 2504)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:50:32 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (5.47ms)
+Completed 200 OK in 13ms (Views: 9.1ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:50:41 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (17.17ms)
+Completed 200 OK in 21ms (Views: 19.0ms | ActiveRecord: 0.3ms | Allocations: 4308)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:50:48 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.37ms)
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:50:57 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (27.64ms)
+Completed 200 OK in 43ms (Views: 28.5ms | ActiveRecord: 0.5ms | Allocations: 4308)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-09 13:51:08 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>35, "user_book"=>{"user_id"=>1, "book_id"=>35}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUserBook Create (0.4ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 35], ["created_at", "2022-12-09 10:51:08.139616"], ["updated_at", "2022-12-09 10:51:08.139616"]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (141.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:6:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.35ms)
+Completed 200 OK in 164ms (Views: 0.8ms | ActiveRecord: 142.9ms | Allocations: 6027)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:51:17 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.58ms)
+Completed 200 OK in 7ms (Views: 5.0ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:51:24 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (4.98ms)
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 13:51:39 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.1ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (3.87ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.3ms | Allocations: 2642)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 13:51:47 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.2ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (4.31ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.5ms | Allocations: 2639)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:51:56 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.88ms)
+Completed 200 OK in 9ms (Views: 5.9ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started PATCH "/api/v1/users/1" for ::1 at 2022-12-09 13:51:57 +0300
+Processing by Api::V1::UsersController#update as JSON
+  Parameters: {"book_id"=>35, "id"=>"1", "user"=>{}}
+  [1m[36mUserBook Load (0.4ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ? AND "user_books"."book_id" = ? LIMIT ?[0m  [["user_id", 1], ["book_id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:22:in `update'
+  [1m[36mUserBook Destroy (0.5ms)[0m  [1m[31mDELETE FROM "user_books" WHERE "user_books"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (76.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:22:in `update'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 35], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:23:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.3ms)
+Completed 200 OK in 113ms (Views: 0.7ms | ActiveRecord: 77.6ms | Allocations: 4506)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 13:53:25 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.3ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (5.08ms)
+Completed 200 OK in 7ms (Views: 5.0ms | ActiveRecord: 0.7ms | Allocations: 2489)
+
+
+Started POST "/api/v1/users/" for ::1 at 2022-12-09 13:54:00 +0300
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"username"=>"Dwayne", "user"=>{"username"=>"Dwayne"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Dwayne"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+[active_model_serializers]   [1m[36mNote Load (0.2ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (4.21ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.5ms | Allocations: 2493)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:54:00 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.34ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.4ms | Allocations: 4307)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-09 13:54:10 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>1, "user_book"=>{"user_id"=>1, "book_id"=>1}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUserBook Create (0.3ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 1], ["created_at", "2022-12-09 10:54:10.264329"], ["updated_at", "2022-12-09 10:54:10.264329"]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (275.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:6:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.32ms)
+Completed 200 OK in 287ms (Views: 0.8ms | ActiveRecord: 275.8ms | Allocations: 5848)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:55:04 +0300
+Started GET "/api/v1/users" for ::1 at 2022-12-09 13:55:04 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.1ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (3.47ms)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 2633)
+
+
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (8.15ms)
+Completed 200 OK in 28ms (Views: 9.4ms | ActiveRecord: 0.3ms | Allocations: 4308)
+
+
+Started GET "/api/v1/users" for ::1 at 2022-12-09 13:55:14 +0300
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:16:in `current_user'
+[active_model_serializers]   [1m[36mNote Load (0.1ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers]   [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:14:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (6.52ms)
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 0.5ms | Allocations: 2633)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:55:21 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (11.29ms)
+Completed 200 OK in 16ms (Views: 13.7ms | ActiveRecord: 0.3ms | Allocations: 4308)
+
+
+Started PATCH "/api/v1/users/1" for ::1 at 2022-12-09 13:55:24 +0300
+Processing by Api::V1::UsersController#update as JSON
+  Parameters: {"book_id"=>1, "id"=>"1", "user"=>{}}
+  [1m[36mUserBook Load (0.1ms)[0m  [1m[34mSELECT "user_books".* FROM "user_books" WHERE "user_books"."user_id" = ? AND "user_books"."book_id" = ? LIMIT ?[0m  [["user_id", 1], ["book_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:22:in `update'
+  [1m[36mUserBook Destroy (0.2ms)[0m  [1m[31mDELETE FROM "user_books" WHERE "user_books"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (253.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/users_controller.rb:22:in `update'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:23:in `update'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.55ms)
+Completed 200 OK in 261ms (Views: 1.2ms | ActiveRecord: 254.4ms | Allocations: 4328)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:55:32 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.73ms)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:55:35 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.75ms)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:55:37 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (147.62ms)
+Completed 200 OK in 152ms (Views: 149.4ms | ActiveRecord: 0.5ms | Allocations: 4310)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:58:06 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (67.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (150.11ms)
+Completed 200 OK in 333ms (Views: 151.0ms | ActiveRecord: 67.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:58:30 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (51.82ms)
+Completed 200 OK in 66ms (Views: 52.8ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 13:59:44 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (8.0ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (66.23ms)
+Completed 200 OK in 106ms (Views: 84.2ms | ActiveRecord: 8.0ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:00:47 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (1.5ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (79.44ms)
+Completed 200 OK in 85ms (Views: 80.4ms | ActiveRecord: 1.5ms | Allocations: 4307)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-09 14:01:07 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>10, "user_book"=>{"user_id"=>1, "book_id"=>10}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUserBook Create (0.3ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 10], ["created_at", "2022-12-09 11:01:07.714981"], ["updated_at", "2022-12-09 11:01:07.714981"]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (130.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:6:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.35ms)
+Completed 200 OK in 208ms (Views: 0.8ms | ActiveRecord: 131.5ms | Allocations: 6098)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:01:30 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.58ms)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:02:17 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.18ms)
+Completed 200 OK in 6ms (Views: 4.0ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:02:23 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (8.81ms)
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.2ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:03:54 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.76ms)
+Completed 200 OK in 8ms (Views: 6.5ms | ActiveRecord: 0.2ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:04:03 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.36ms)
+Completed 200 OK in 6ms (Views: 4.1ms | ActiveRecord: 0.2ms | Allocations: 4308)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:04:32 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.6ms)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-09 14:04:41 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.18ms)
+Completed 200 OK in 6ms (Views: 3.9ms | ActiveRecord: 0.3ms | Allocations: 4307)
+
+
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from <main> at bin/rails:9)
+  [1m[35m (0.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "back_kutab_development"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "back_kutab_test"[0m
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from <main> at bin/rails:9)
+  [1m[35m (0.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "back_kutab_development"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "back_kutab_test"[0m
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from load at /usr/share/rvm/gems/ruby-2.7.4/bin/rake:25)
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from <main> at bin/rails:9)
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from <main> at bin/rails:9)
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "back_kutab_development"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "back_kutab_test"[0m
+DEPRECATION WARNING: Non-URL-safe CSRF tokens are deprecated. Use 6.1 defaults or above. (called from block (3 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/actionpack-7.0.4/lib/action_controller/railtie.rb:80)
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from block (2 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/activerecord-7.0.4/lib/active_record/railtie.rb:264)
+Started POST "/api/v1/users/" for ::1 at 2022-12-10 03:16:22 +0300
+Started GET "/api/v1/books" for ::1 at 2022-12-10 03:16:22 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-12-10 03:16:45 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/books" for ::1 at 2022-12-10 03:16:47 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-12-10 03:16:59 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-12-10 03:20:12 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/books" for ::1 at 2022-12-10 03:20:35 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-12-10 03:20:48 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/books" for ::1 at 2022-12-10 03:20:50 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-12-10 03:20:56 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/users" for ::1 at 2022-12-10 03:21:04 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/books" for ::1 at 2022-12-10 03:21:08 +0300
+  
+ActiveRecord::NoDatabaseError (We could not find your database: back_kutab_development. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+DEPRECATION WARNING: Non-URL-safe CSRF tokens are deprecated. Use 6.1 defaults or above. (called from block (3 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/actionpack-7.0.4/lib/action_controller/railtie.rb:80)
+DEPRECATION WARNING: Using legacy connection handling is deprecated. Please set
+`legacy_connection_handling` to `false` in your application.
+
+The new connection handling does not support `connection_handlers`
+getter and setter.
+
+Read more about how to migrate at: https://guides.rubyonrails.org/active_record_multiple_databases.html#migrate-to-the-new-connection-handling
+ (called from block (2 levels) in <class:Railtie> at /usr/share/rvm/gems/ruby-2.7.4/gems/activerecord-7.0.4/lib/active_record/railtie.rb:264)
+Started GET "/api/v1/users" for ::1 at 2022-12-10 03:45:25 +0300
+Started POST "/api/v1/users/" for ::1 at 2022-12-10 03:45:25 +0300
+Started GET "/api/v1/books" for ::1 at 2022-12-10 03:45:25 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::BooksController#index as */*
+Processing by Api::V1::UsersController#index as */*
+  [1m[36mBook Load (31.8ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (131.07ms)
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.43ms)
+Completed 200 OK in 555ms (Views: 5.7ms | ActiveRecord: 32.6ms | Allocations: 15449)
+
+
+Completed 200 OK in 295ms (Views: 294.3ms | ActiveRecord: 0.0ms | Allocations: 2328)
+
+
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"username"=>"Dwayne", "user"=>{"username"=>"Dwayne"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Dwayne"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:4:in `create'
+[active_model_serializers]   [1m[36mNote Load (0.1ms)[0m  [1m[34mSELECT "notes".* FROM "notes" WHERE "notes"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers]   [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" INNER JOIN "user_books" ON "books"."id" = "user_books"."book_id" WHERE "user_books"."user_id" = ?[0m  [["user_id", 1]]
+[active_model_serializers]   ↳ app/controllers/api/v1/users_controller.rb:7:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with User (1297.76ms)
+Completed 200 OK in 1481ms (Views: 1297.3ms | ActiveRecord: 2.8ms | Allocations: 10100)
+
+
+Started POST "/api/v1/user_books/" for ::1 at 2022-12-10 03:45:39 +0300
+Processing by Api::V1::UserBooksController#create as JSON
+  Parameters: {"user_id"=>1, "book_id"=>37, "user_book"=>{"user_id"=>1, "book_id"=>37}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.3ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 37], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mUserBook Create (43.7ms)[0m  [1m[32mINSERT INTO "user_books" ("user_id", "book_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["book_id", 37], ["created_at", "2022-12-10 00:45:39.292222"], ["updated_at", "2022-12-10 00:45:39.292222"]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (175.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/v1/user_books_controller.rb:5:in `create'
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" = ? LIMIT ?[0m  [["id", 37], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/user_books_controller.rb:6:in `create'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Book (0.35ms)
+Completed 200 OK in 378ms (Views: 0.8ms | ActiveRecord: 219.8ms | Allocations: 8799)
+
+
+Started GET "/api/v1/books" for ::1 at 2022-12-10 03:46:22 +0300
+Processing by Api::V1::BooksController#index as */*
+  [1m[36mBook Load (0.4ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  ↳ app/controllers/api/v1/books_controller.rb:4:in `sort_by'
+No serializer found for resource: #<Book id: 10, title: "Ask Baba Yaga", subtitle: "Otherworldly Advice for Everyday Troubles", authors: "Taisia Kitaiskaia", img: "http://books.google.com/books/content?id=3rWgDgAAQ...", description: "Dear Baba Yaga, I think I must crave male attentio...", created_at: "2022-12-09 10:07:31.723205000 +0000", updated_at: "2022-12-09 10:07:31.723205000 +0000">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.79ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.4ms | Allocations: 4344)
+
+
